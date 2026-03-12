@@ -15,7 +15,9 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
+  /* Allows the page to grow and scroll */
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 .main-container {
@@ -32,12 +34,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
-/* Simplified Card - No Envelope wrap */
 .card {
-  width: 380px;
+  width: 100%;
+  max-width: 380px;
   background: white;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -46,9 +48,8 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-/* When active, the card slides up slightly to make room for grid */
 .card.active { 
-  transform: translateY(-20px);
+  transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.05);
 }
 
@@ -65,19 +66,19 @@ body {
 h1 { font-weight: 700; font-size: 2.2rem; margin-bottom: 8px; letter-spacing: -0.02em; }
 p { color: var(--text-muted); font-weight: 300; font-size: 1.1rem; }
 
-/* Grid visibility */
+/* Grid visibility logic */
 .notes-section {
   width: 100%;
-  max-height: 0;
   opacity: 0;
-  overflow: hidden;
-  transition: all 0.5s ease;
+  display: none; 
+  transition: opacity 0.5s ease;
 }
 
 .notes-section.visible { 
-  max-height: 2000px;
+  display: block;
   opacity: 1;
   margin-top: 20px;
+  padding-bottom: 100px;
 }
 
 .notes-grid {
@@ -97,8 +98,8 @@ p { color: var(--text-muted); font-weight: 300; font-size: 1.1rem; }
 .note-name { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-bottom: 8px; }
 .note-msg { font-size: 14px; line-height: 1.6; color: var(--text-main); }
 
-/* UI Buttons */
 .controls { margin-top: 40px; display: flex; gap: 12px; }
+
 .btn-primary, .btn-secondary, .btn-send { 
   padding: 12px 24px; 
   border-radius: 8px; 
@@ -108,14 +109,12 @@ p { color: var(--text-muted); font-weight: 300; font-size: 1.1rem; }
   font-weight: 500;
   transition: background 0.2s;
 }
+
 .btn-primary { background: black; color: white; border: none; }
 .btn-secondary { background: white; border: 1px solid var(--border); color: black; }
-.btn-primary:hover { background: #222; }
 
-/* Modal Overlay */
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.2); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 100; }
 .overlay.visible { display: flex; }
 .modal { background: white; padding: 40px; width: 400px; border-radius: 12px; position: relative; }
 .modal-close { position: absolute; top: 20px; right: 20px; border: none; background: none; cursor: pointer; color: var(--text-muted); }
-.field { width: 100%; padding: 12px; margin-top: 15px; border: 1px solid var(--border); border-radius: 6px; outline: none; }
-.btn-send { width: 100%; background: black; color: white; border: none; margin-top: 20px; }
+.

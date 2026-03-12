@@ -34,19 +34,23 @@ window.addEventListener('DOMContentLoaded', function() {
   var notesSection = document.querySelector("#notes-section");
   var modal = document.querySelector("#modal-overlay");
 
-  // Show messages
   openBtn.addEventListener("click", function() {
     card.classList.add("active");
-    notesSection.classList.add("visible");
+    notesSection.style.display = "block";
+    setTimeout(function() {
+        notesSection.classList.add("visible");
+    }, 10);
     openBtn.style.display = "none";
     closeBtn.style.display = "inline-block";
     fetchMessages();
   });
 
-  // Back / Hide messages
   closeBtn.addEventListener("click", function() {
     card.classList.remove("active");
     notesSection.classList.remove("visible");
+    setTimeout(function() {
+        notesSection.style.display = "none";
+    }, 500); 
     closeBtn.style.display = "none";
     openBtn.style.display = "inline-block";
   });

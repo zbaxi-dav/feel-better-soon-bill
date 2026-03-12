@@ -30,18 +30,28 @@ function fetchMessages() {
 window.addEventListener('DOMContentLoaded', function() {
   var card = document.querySelector("#card");
   var openBtn = document.querySelector("#open-btn");
-  var studentLink = document.querySelector("#student-link");
-  var modal = document.querySelector("#modal-overlay");
+  var closeBtn = document.querySelector("#close-btn");
   var notesSection = document.querySelector("#notes-section");
+  var modal = document.querySelector("#modal-overlay");
 
+  // Show messages
   openBtn.addEventListener("click", function() {
-    card.classList.add("risen");
+    card.classList.add("active");
     notesSection.classList.add("visible");
     openBtn.style.display = "none";
+    closeBtn.style.display = "inline-block";
     fetchMessages();
   });
 
-  studentLink.onclick = function() { modal.classList.add("visible"); };
+  // Back / Hide messages
+  closeBtn.addEventListener("click", function() {
+    card.classList.remove("active");
+    notesSection.classList.remove("visible");
+    closeBtn.style.display = "none";
+    openBtn.style.display = "inline-block";
+  });
+
+  document.querySelector("#student-link").onclick = function() { modal.classList.add("visible"); };
   document.querySelector("#modal-close").onclick = function() { modal.classList.remove("visible"); };
 
   document.querySelector("#send-btn").onclick = function() {
